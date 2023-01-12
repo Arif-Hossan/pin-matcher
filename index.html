@@ -44,21 +44,21 @@
                   <button class="buttons" onclick="createInput(3)">3</button>
                 </div>
                 <div class="calc-button-row">
-                  <button class="buttons" onclick="createInput('del')">&lt;</button>
+                  <button class="buttons" onclick="delInput()">&lt;</button>
                   <button class="buttons" onclick="createInput(0)">0</button>
-                  <button class="buttons" onclick="createInput('clear')">C</button>
+                  <button class="buttons" onclick="clearInput()">C</button>
                 </div>
                 <div>
-                  <button type="submit" class="submit-btn">Submit</button>
+                  <button onclick="matchPin()" type="submit" class="submit-btn">Submit</button>
                   <p class="action-left">3 try left</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="notify-section">
-          <p class="notify">❌ Pin Didn't Match, Please try again</p>
-          <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        <div id="notification" class="notify-section">
+          <p id="notmatch-notification" class="notify">❌ Pin Didn't Match, Please try again</p>
+          <p id="match-notification" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
       </div>
     </div>

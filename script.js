@@ -1,3 +1,22 @@
+// generate pin
+function getPin() {
+  // creating a random number then make a string and after that split that using dot(.)
+  let random = Math.random() * 10000 + "";
+  let randomPin = random.split(".")[0];
+  if (randomPin.length == 4) {
+    return randomPin;
+  } else {
+    return getPin();
+  }
+}
+// display the generated pin
+function generatePin() {
+  let generatedInput = document.getElementById("generated-pin");
+  generatedInput.value = getPin();
+}
+
+/*
+Old Code
 function generatePin() {
   let randomPin;
   do {
@@ -33,7 +52,7 @@ function matchPin() {
     let getInputNumber = getInputPin * 1;
     let getGeneratedInput = document.getElementById("getPin");
     let getGeneratedInputPin = getGeneratedInput.value;
-    let generatedInputNumber = getGeneratedInputPin / 1;
+    let generatedInputNumber = getGeneratedInputPin * 1;
     if (generatedInputNumber == getInputNumber) {
       document.getElementById("notification").style.display = "block";
       document.getElementById("match-notification").style.display = "block";
@@ -42,7 +61,7 @@ function matchPin() {
       document.getElementById("notmatch-notification").style.display = "block";
     }
   }
-}
+}*/
 
 // function createInput(numbers){
 // inputPin.value+=numbers;

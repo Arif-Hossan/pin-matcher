@@ -14,7 +14,43 @@ function generatePin() {
   let generatedInput = document.getElementById("generated-pin");
   generatedInput.value = getPin();
 }
-
+// handle input pin using event bubble
+let numberContainer = document.getElementById("number-container");
+numberContainer.addEventListener("click", function (event) {
+  let digit = event.target.innerText;
+  if (isNaN(digit)) {
+    if (digit == "C") {
+      let clearInput = document.getElementById("inputed-pin");
+      clearInput.value = "";
+    }
+    else if (digit == "<") {
+      let deleteInput = document.getElementById("inputed-pin");
+      deleteInput.value = deleteInput.value.slice(0, -1);
+    }
+  }
+  else {
+    let inputedPin = document.getElementById("inputed-pin");
+    inputedPin.value += digit;
+  }
+});
+// compare/verify pin
+function comparePin() {
+  let inputedPin = document.getElementById("inputed-pin").value;
+  let generatedPin = document.getElementById("generated-pin").value;
+  if (inputedPin == generatedPin) {
+    displayCompareMessage("block", "none");
+  }
+  else {
+    displayCompareMessage("block", "none");
+  }
+}
+// compare message
+function displayCompareMessage(correctStatus, incorrectStatus) {
+  let correctMessage = document.getElementById("correct-message");
+  correctMessage = correctStatus;
+  let incorrectMessage = document.getElementById("incorrect-message");
+  incorrectMessage = incorrectStatus;
+}
 /*
 Old Code
 function generatePin() {

@@ -1,3 +1,4 @@
+let errorCount = 0; // declare errorCount variable globally
 // generate pin
 function getPin() {
   // creating a random number then make a string and after that split that using dot(.)
@@ -13,6 +14,7 @@ function getPin() {
 function generatePin() {
   let generatedInput = document.getElementById("generated-pin");
   generatedInput.value = getPin();
+  errorCount = 0;
 }
 // handle input pin using event bubble
 let numberContainer = document.getElementById("number-container");
@@ -22,34 +24,44 @@ numberContainer.addEventListener("click", function (event) {
     if (digit == "C") {
       let clearInput = document.getElementById("inputed-pin");
       clearInput.value = "";
-    }
-    else if (digit == "<") {
+      displayCompareMessage("none", "none");
+    } else if (digit == "<") {
       let deleteInput = document.getElementById("inputed-pin");
       deleteInput.value = deleteInput.value.slice(0, -1);
+      displayCompareMessage("none", "none");
     }
-  }
-  else {
+  } else {
     let inputedPin = document.getElementById("inputed-pin");
     inputedPin.value += digit;
+    displayCompareMessage("none", "none");
   }
 });
 // compare/verify pin
 function comparePin() {
   let inputedPin = document.getElementById("inputed-pin").value;
   let generatedPin = document.getElementById("generated-pin").value;
-  if (inputedPin == generatedPin) {
+
+  if (inputedPin === generatedPin) {
+    errorCount = 0;
     displayCompareMessage("block", "none");
-  }
-  else {
-    displayCompareMessage("block", "none");
+  } else {
+    errorCount++;
+    let actionLeft = document.getElementById("action-left");
+    actionLeft.innerText = 3 - errorCount + " try left";
+    if (errorCount >= 3) {
+      alert("Maximum attempts reached. Please generate a new PIN.");
+      errorCount = 0;
+    } else {
+      displayCompareMessage("none", "block");
+    }
   }
 }
 // compare message
 function displayCompareMessage(correctStatus, incorrectStatus) {
   let correctMessage = document.getElementById("correct-message");
-  correctMessage = correctStatus;
+  correctMessage.style.display = correctStatus;
   let incorrectMessage = document.getElementById("incorrect-message");
-  incorrectMessage = incorrectStatus;
+  incorrectMessage.style.display = incorrectStatus;
 }
 /*
 Old Code
